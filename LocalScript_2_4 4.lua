@@ -14,7 +14,10 @@ local LocalPlayer = Players.LocalPlayer
 local Camera      = Workspace.CurrentCamera
 
 -- ─── ESPERAR REMOTES ─────────────────────────────────────────
-local RemoteFolder = ReplicatedStorage:WaitForChild("BloodPowerEvents", 15)
+-- Sin timeout: el LocalScript espera indefinidamente hasta que el
+-- ServerScript cree la carpeta. Poner timeout causa nil si el servidor
+-- tarda más de N segundos → error "attempt to index nil with WaitForChild"
+local RemoteFolder = ReplicatedStorage:WaitForChild("BloodPowerEvents")
 local RE_BloodBall      = RemoteFolder:WaitForChild("BloodBall")
 local RE_BloodCorpuscle = RemoteFolder:WaitForChild("BloodCorpuscle")
 local RE_BloodWhip      = RemoteFolder:WaitForChild("BloodWhip")
